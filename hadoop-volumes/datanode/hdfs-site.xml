@@ -1,0 +1,11 @@
+<configuration>    
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>/opt/hadoop/data/datanode</value> <!-- Altere para o diretório onde deseja armazenar os dados do Datanode -->
+    </property>
+
+    <property>
+        <name>dfs.blocksize</name>
+        <value>67108864</value> 
+    </property>
+</configuration>

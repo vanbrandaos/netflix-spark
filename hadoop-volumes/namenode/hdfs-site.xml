@@ -1,0 +1,18 @@
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value> 
+    </property>
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/opt/hadoop/data/namenode</value> <!-- Altere para o diretório onde deseja armazenar os dados do Namenode -->
+    </property>
+
+    <property>
+        <name>dfs.blocksize</name>
+        <value>67108864</value> <!-- Tamanho do bloco em bytes (64MB) -->
+    </property>
+</configuration>
+
+
