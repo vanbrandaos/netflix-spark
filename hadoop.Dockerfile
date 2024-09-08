@@ -47,7 +47,7 @@ RUN sudo mkdir -p /opt/hadoop/data/namenode && sudo chown -R hduser:hduser /opt/
 RUN sudo mkdir -p /opt/hadoop/data/datanode && sudo chown -R hduser:hduser /opt/hadoop/data
 
 
-COPY docker-entrypoint.sh $HADOOP_HOME/etc/hadoop/
+COPY hadoop-volumes/docker-entrypoint.sh $HADOOP_HOME/etc/hadoop/
 ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
 WORKDIR /usr/local/bin
