@@ -64,7 +64,10 @@ services:
     #   - "spark-master:192.168.1.104"
 
   # spark-backend:
-  #   container_name: spark-backend
+  #   container_name: namenode
+  #   build:
+  #     context: ./
+  ##     dockerfile: Dockerfile
   #   ports:
   #     - 5000:5000
   #   volumes:
