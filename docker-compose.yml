@@ -70,8 +70,6 @@ services:
   ##     dockerfile: Dockerfile
   #   ports:
   #     - 5000:5000
-  #   volumes:
-  #     - ./spark-volumes/scripts:/scripts
   #   environment:
   #     - SPARK_MASTER_URL=spark://spark-master:7077   
   #     - NETFLIX_SPARK_FILE=
