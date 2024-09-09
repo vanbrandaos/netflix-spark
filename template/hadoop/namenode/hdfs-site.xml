@@ -6,8 +6,13 @@
 
     <property>
         <name>dfs.namenode.name.dir</name>
-        <value>/opt/hadoop/data/namenode</value> <!-- Altere para o diretório onde deseja armazenar os dados do Namenode -->
+        <value>/hadoop/dfs/name</value> <!-- Altere para o diretório onde deseja armazenar os dados do Namenode -->
     </property>
+
+    <property>
+        <name>dfs.datanode.name.dir</name>
+        <value>/hadoop/dfs/data</value> <!-- Altere para o diretório onde deseja armazenar os dados do Namenode -->
+    </property>    
 
     <property>
         <name>dfs.blocksize</name>

@@ -1,7 +1,7 @@
 <configuration>
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://localhost:9000</value>
+    <value>hdfs://namenode:9000</value> <!--este e o nome do host no container, normalmente localhost-->
   </property>
 </configuration>
 

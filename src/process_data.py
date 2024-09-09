@@ -1,7 +1,6 @@
 from pyspark.sql import SparkSession
 from google.cloud import storage
 from google.oauth2 import service_account
-#from utils import clean_line, process_column, extract_year, parse_duration
 import json, os
 
 def clean_line(line):
@@ -38,15 +37,20 @@ def parse_duration(duration_str):
     else:
         return 0, 0
 
-spark_master_url = os.getenv('SPARK_MASTER_URL', 'spark://soma-ws-01:7077')  
+netflix_file_dir = os.getenv('NETFLIX_SPARK_FILE', 'hdfs://localhost:9000/user/hduser/data/netflix_titles.csv')
+spark_master_url = os.getenv('SPARK_MASTER_URL', 'spark://spark-master:7077')  
+
+print(f"\nNETFLIX PROCESSOR")
+print(f"ENVS")
+print(f"SPARK_MASTER_URL= {spark_master_url}")
+print(f"NETFLIX_SPARK_FILE= {netflix_file_dir}")
+print(f"\nPROCESSING...")
 
 spark = SparkSession.builder \
-    .appName("NetflixDataProcessing") \
+    .appName("NetflixDataProcessor") \
     .config("spark.master", spark_master_url) \
     .getOrCreate()
 
-netflix_file_dir = os.getenv('NETFLIX_SPARK_FILE', './data/titles.csv')
-#netflix_file_dir = os.getenv('NETFLIX_SPARK_FILE', 'hdfs://localhost:9000/user/soma/data/netflix_titles.csv')
 rdd = spark.sparkContext.textFile(netflix_file_dir)
 header = rdd.first()
 
@@ -116,3 +120,4 @@ print(json_data)
 # print(f'File uploaded to {destination_blob_name}.')
 
 spark.stop()
+print(f"\nDONE!")
