@@ -31,7 +31,7 @@ Apos a inclusao do csv para processamento, podemos executar o programa que subme
 ```shell
 cd netflix-spark
 python -m venv netflix-spark-env
- source netflix-spark-env/bin/activate.fish #ou arquivo activate com extensao do seu shell
+source netflix-spark-env/bin/activate.fish #ou arquivo activate com extensao do seu shell
 pip install -r requirements.txt
 ```
 
@@ -40,3 +40,9 @@ Execute com:
 ```shell
 python src/process_data.py
 ```
+
+Interfaces Web:
+
+- [localhost:9870](http://localhost:9870/) - Interface Web do namenode (Haddop)
+- [spark-master:8080](http://spark-master:8080/) - Interface Web Master (Spark)
+- [spark-master:8081](http://spark-master:8081/) - Interface Web Worker (Spark)

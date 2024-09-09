@@ -30,10 +30,8 @@ services:
       - SPARK_LOCAL_HOSTNAME=spark-master   
       - SPARK_LOCAL_IP=192.168.1.104   
     volumes:
-      - ./csv:/csv:rw
-      - ./src:/scripts
+      - ./csv:/csv:rw      
     network_mode: host      
-
 
   spark-worker:
     image: bitnami/spark:3.5.2
