@@ -1,7 +1,10 @@
 from pyspark.sql import SparkSession
 from google.cloud import storage
 from google.oauth2 import service_account
-import json, os
+import json, os, logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(threadName)s] %(levelname)-5s %(name)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 def clean_line(line):
     fields = []
@@ -40,11 +43,11 @@ def parse_duration(duration_str):
 netflix_file_dir = os.getenv('NETFLIX_SPARK_FILE', 'hdfs://localhost:9000/user/hduser/data/netflix_titles.csv')
 spark_master_url = os.getenv('SPARK_MASTER_URL', 'spark://spark-master:7077')  
 
-print(f"\nNETFLIX PROCESSOR")
-print(f"ENVS")
-print(f"SPARK_MASTER_URL= {spark_master_url}")
-print(f"NETFLIX_SPARK_FILE= {netflix_file_dir}")
-print(f"\nPROCESSING...")
+logger.info(f"\nNETFLIX PROCESSOR")
+logger.info(f"ENVS")
+logger.info('SPARK_MASTER_URL= %s', spark_master_url)
+logger.info('NETFLIX_SPARK_FILE= %s', netflix_file_dir)
+logger.info (f"\nPROCESSING...")
 
 spark = SparkSession.builder \
     .appName("NetflixDataProcessor") \

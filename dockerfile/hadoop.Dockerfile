@@ -14,20 +14,20 @@ RUN apt-get update -y \
         ssh \
     && apt-get clean
 RUN useradd -m hduser && echo "hduser:supergroup" | chpasswd && adduser hduser sudo && echo "hduser     ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && cd /usr/bin/ && sudo ln -s python3 python
-COPY template/hadoop/ssh_config /etc/ssh/ssh_config
+COPY config/hadoop/ssh_config /etc/ssh/ssh_config
 
 WORKDIR /home/hduser
 USER hduser
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && chmod 0600 ~/.ssh/authorized_keys
 ENV HADOOP_VERSION=3.2.1
 ENV HADOOP_HOME /home/hduser/hadoop-${HADOOP_VERSION}
-# RUN curl -sL --retry 3 \
-#   "http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz" \
-#   | gunzip \
-#   | tar -x -C /home/hduser/ \
-#  && rm -rf ${HADOOP_HOME}/share/doc
+RUN curl -sL --retry 3 \
+  "http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz" \
+  | gunzip \
+  | tar -x -C /home/hduser/ \
+ && rm -rf ${HADOOP_HOME}/share/doc
 
-COPY hadoop-${HADOOP_VERSION}.tar.gz /home/hduser/
+# COPY hadoop-${HADOOP_VERSION}.tar.gz /home/hduser/
 
 RUN tar -xzf hadoop-${HADOOP_VERSION}.tar.gz -C /home/hduser/ \
  && rm -rf /home/hduser/hadoop-${HADOOP_VERSION}/share/doc \
@@ -45,11 +45,11 @@ ENV YARN_RESOURCEMANAGER_USER hduser
 ENV YARN_NODEMANAGER_USER hduser
 
 RUN echo "export JAVA_HOME=/opt/java/openjdk/" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-COPY template/hadoop/core-site.xml $HADOOP_HOME/etc/hadoop/
-COPY template/hadoop/hdfs-site.xml $HADOOP_HOME/etc/hadoop/
-COPY template/hadoop/yarn-site.xml $HADOOP_HOME/etc/hadoop/
+COPY config/hadoop/core-site.xml $HADOOP_HOME/etc/hadoop/
+COPY config/hadoop/hdfs-site.xml $HADOOP_HOME/etc/hadoop/
+COPY config/hadoop/yarn-site.xml $HADOOP_HOME/etc/hadoop/
 
-COPY template/hadoop/docker-entrypoint.sh $HADOOP_HOME/etc/hadoop/
+COPY config/hadoop/docker-entrypoint.sh $HADOOP_HOME/etc/hadoop/
 
 ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 

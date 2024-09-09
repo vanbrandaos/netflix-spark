@@ -21,9 +21,10 @@ Ao iniciar todas as dependencias em container, precisamos inicializar nosso file
 
 ```shell
 cd netflix-spark
-docker exec -it hadoop bash
-hdfs dfs -mkdir -p /user/hduser/data #comando no container hadoop
-hdfs dfs -put /csv/netflix_titles.csv /user/hduser/data
+docker exec hadoop sh -c "hdfs dfs -mkdir -p /user/hduser/data && hdfs dfs -put /csv/netflix_titles.csv /user/hduser/data" #compondo estrutura de diretorios e incluindo csv
+#docker exec -it hadoop bash
+#hdfs dfs -mkdir -p /user/hduser/data
+#hdfs dfs -put /csv/netflix_titles.csv /user/hduser/data
 ```
 
 Apos a inclusao do csv para processamento, podemos executar o programa que submete os jobs, sendo necessario criar um ambiente virtual Python e instalar as dependencias do projeto: 
