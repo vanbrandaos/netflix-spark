@@ -2,7 +2,7 @@
 
 Este repositorio tem o conteudo e todas as dependencias para o funcionamento de um programa que processa dados de um CSV usando o Spark, armazenando o resultado em um Bucket. 
 
-*Para armazenar as informacoes no bucket, e necessario ter as chaves privadas (e, consequentemente, permissoes de escrita), motivo pelo qual o trecho esta omitido.
+*Para armazenar as informacoes no bucket, e necessario ter as chaves privadas (e, consequentemente, permissoes de escrita), motivo pelo qual o trecho esta comentado e o diretorio de secrets omitido.
 
 Para suprir as dependencias do programa, incluiu-se dockerfiles e um arquivo orquestrador para que se tenha:
 
