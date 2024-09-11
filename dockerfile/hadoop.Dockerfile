@@ -21,21 +21,12 @@ USER hduser
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && chmod 0600 ~/.ssh/authorized_keys
 ENV HADOOP_VERSION=3.2.1
 ENV HADOOP_HOME /home/hduser/hadoop-${HADOOP_VERSION}
-RUN curl -sL --retry 3 \
-  "http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz" \
-  | gunzip \
-  | tar -x -C /home/hduser/ \
- && rm -rf ${HADOOP_HOME}/share/doc
 
-# COPY hadoop-${HADOOP_VERSION}.tar.gz /home/hduser/
-
-RUN tar -xzf hadoop-${HADOOP_VERSION}.tar.gz -C /home/hduser/ \
- && rm -rf /home/hduser/hadoop-${HADOOP_VERSION}/share/doc \
- && mkdir -p /home/hduser/hadoop-${HADOOP_VERSION} \
- && chown -R hduser:hduser /home/hduser/hadoop-${HADOOP_VERSION} \
- && rm /home/hduser/hadoop-${HADOOP_VERSION}.tar.gz
-
-#RUN mv /home/hduser/hadoop-${HADOOP_VERSION} /home/hduser/hadoop
+RUN curl -L -o /home/hduser/hadoop-3.2.1.tar.gz http://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz && \
+    tar -xzvf /home/hduser/hadoop-3.2.1.tar.gz -C /home/hduser/ && \
+    rm /home/hduser/hadoop-3.2.1.tar.gz && \
+    chown -R hduser:hduser /home/hduser/hadoop-3.2.1 \
+  && rm -rf ${HADOOP_HOME}/share/doc
 
 ENV HDFS_NAMENODE_USER hduser
 ENV HDFS_DATANODE_USER hduser

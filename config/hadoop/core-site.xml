@@ -17,9 +17,18 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
+
+    <property>
+      <name>fs.gs.impl</name>
+      <value>com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem</value>
+    </property>
+    <property>
+      <name>google.cloud.auth.service.account.json.keyfile</name>
+      <value>/opt/bitnami/spark/secrets/spark-gcloud-key.json</value>
+    </property>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://0.0.0.0:9000</value>
+        <value>hdfs://hadoop:9000</value>   <!-- <value>hdfs://0.0.0.0:9000</value> -->
     </property>
 </configuration>
 
