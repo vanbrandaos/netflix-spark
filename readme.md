@@ -10,6 +10,11 @@ Ao final, uma aplicação *web* está pronta para ler esses dados do *bucket* e 
 
 **Para armazenar as informacoes no bucket, e necessario ter as chaves privadas (e, consequentemente, permissoes de escrita), motivo pelo qual o trecho esta comentado e o diretorio de secrets omitido. Caso vá utilizar este projeto como base, lembre-se de inserir suas chaves da gcp no diretório `secrets`.*
 
+```shell
+mv [dir]/sa-private-key.json [project-dir]/secrets/spark-gcloud-key.json
+chmod a+r spark-gcloud-key.json
+```
+
 ### Infraestrutura e dependências do Projeto
 
 As principais dependencias do projeto são o `Hadoop` e `Spark`. Para fácil solução, usamos essas ferramentas via Docker. O projeto tem um `docker-compose` que disponibiliza:

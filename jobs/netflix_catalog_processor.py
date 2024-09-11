@@ -43,7 +43,7 @@ def main():
     
     spark = SparkSession.builder \
         .appName("Spark GCS Example") \
-        .config("spark.jars", "/opt/bitnami/spark/custom-jars/gcs-connector-hadoop3-latest.jar") \
+        .config("spark.jars", "/opt/bitnami/spark/jars/gcs-connector-hadoop3-latest.jar") \
         .config("spark.hadoop.fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem") \
         .config("fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS") \
         .config("spark.hadoop.google.cloud.auth.service.account.enable", "true") \

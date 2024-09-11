@@ -23,7 +23,10 @@ ENV HADOOP_VERSION=3.2.1
 ENV HADOOP_HOME /home/hduser/hadoop-${HADOOP_VERSION}
 
 RUN curl -L -o /home/hduser/hadoop-3.2.1.tar.gz http://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz && \
-    tar -xzvf /home/hduser/hadoop-3.2.1.tar.gz -C /home/hduser/ && \
+
+#COPY hadoop-3.2.1.tar.gz /home/hduser
+
+RUN tar -xzvf /home/hduser/hadoop-3.2.1.tar.gz -C /home/hduser/ && \
     rm /home/hduser/hadoop-3.2.1.tar.gz && \
     chown -R hduser:hduser /home/hduser/hadoop-3.2.1 \
   && rm -rf ${HADOOP_HOME}/share/doc

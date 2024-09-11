@@ -43,9 +43,9 @@ services:
       - SPARK_LOCAL_HOSTNAME=spark-master   
     volumes:      
       - ./jobs:/opt/bitnami/spark/jobs
-      - ./secrets/spark-gcloud-key.json:/opt/bitnami/spark/secrets/spark-gcloud-key.json
+      - ./secrets/spark-gcloud-key.json:/opt/bitnami/spark/secrets/spark-gcloud-key.json                                        
       - ./config/spark/log4j.properties:/opt/bitnami/spark/conf/log4j.properties      
-      - ./jars:/opt/bitnami/spark/custom-jars       
+      #- ./jars:/opt/bitnami/spark/custom-jars       
       # - ./config/spark/spark-env.sh:/opt/bitnami/spark/conf/spark-env.sh  
     networks:
       - hadoop        
