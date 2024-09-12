@@ -2,6 +2,9 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, lower, split, when, count, sum
 import json, os, sys, logging
 from pyspark.sql.functions import trim, when, col, lit, avg
+from google.cloud import storage
+from google.cloud import storage
+from google.oauth2 import service_account
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(threadName)s] %(levelname)-5s %(name)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -97,20 +100,20 @@ def main():
         "total": num_records
     }
 
-    json_data = json.dumps(result, indent=3)
-    print(json_data)
+    #df.write.format("json").save("hdfs://hadoop:9000/user/hduser/results")
 
-    # # data_list = [data]
-    # # df = spark.createDataFrame(data_list)
+    credentials_path = '/opt/bitnami/spark/secrets/spark-gcloud-key.json'
+    credentials = service_account.Credentials.from_service_account_file(credentials_path)
+    client = storage.Client(credentials=credentials)
+    bucket = client.get_bucket('spark-netflix-bucket-39')
 
-    # # gcs_bucket_path = "gs://spark-netflix-bucket-39/data/netflix3.json"
-    # # df.write.mode('overwrite').json(gcs_bucket_path)
-    
-    # # #df.write.format("json").save("hdfs://hadoop:9000/user/hduser/results")
+    final_blob = bucket.blob('data/netflix2.json')
+    final_blob.upload_from_string(json.dumps(result, indent=3), content_type='application/json')
 
 
-    # # spark.stop()
-    # # print(f"\nDONE!")
+
+    spark.stop()
+    print(f"\nDONE!")
 
 if __name__ == "__main__":
     main()
