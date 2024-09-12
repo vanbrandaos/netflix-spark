@@ -39,11 +39,9 @@ docker compose up -d
 Ao iniciar todas as dependencias em container, precisamos inicializar nosso filesystem e incluir o arquivo insumo do processamento (que ja e incluido como volume no container hadoop):
 
 ```shell
-docker exec hadoop sh -c "hdfs dfs -mkdir -p /user/hduser/data && hdfs dfs -put /csv/netflix_titles.csv /user/hduser/data" #incluindo csv no HDFS a partir do diretorio volume
-#docker exec -it hadoop bash
-#hdfs dfs -mkdir -p /user/hduser/data
-#hdfs dfs -put /csv/netflix_titles.csv /user/hduser/data
+docker exec hadoop sh -c "hdfs dfs -mkdir -p /user/hduser/data && hdfs dfs -put /csv/netflix_titles.csv /user/hduser/data" 
 ```
+**incluindo csv no HDFS a partir do diretorio volume.*
 
 Após a inclusao do csv para processamento é possível submeter o job: 
 
