@@ -2,7 +2,8 @@ FROM bitnami/spark:3.5.2
 
 USER root
 
-RUN apt-get update && apt-get install -y curl && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y curl && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    pip install google-cloud-storage google-auth google-auth-oauthlib google-auth-httplib2
 
 # Diretório onde você deseja armazenar o GCS connector jar
 ENV GCS_CONNECTOR_JAR_URL=https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop3-latest.jar
