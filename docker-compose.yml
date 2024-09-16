@@ -51,7 +51,7 @@ services:
       - hadoop        
 
   spark-worker:
-    image: custom-spark-gcs #bitnami/spark:3.5.2
+    #image: custom-spark-gcs #bitnami/spark:3.5.2
     container_name: spark-worker
     build:
       context: ./
