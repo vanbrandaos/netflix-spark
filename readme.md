@@ -46,7 +46,7 @@ docker exec hadoop sh -c "hdfs dfs -mkdir -p /user/hduser/data && hdfs dfs -put 
 Após a inclusao do csv para processamento é possível submeter o job: 
 
 ```shell
-docker exec spark-master spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/netflix_catalog_processor.py
+docker exec spark-master spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/netflix_catalog_processor_sql.py
 ```
 **O job é preparado como um volume no container master do Spark.*
 
