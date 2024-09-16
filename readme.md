@@ -59,7 +59,7 @@ docker exec spark-master spark-submit --master spark://spark-master:7077 /opt/bi
 
 ## Desenvolvedores
 
-- [Thiago Lofuto](#https://github.com/thiagolotufo)
+- [Thiago Lotufo](#https://github.com/thiagolotufo)
 - [Vanessa Brandão](#https://github.com/vanbrandaos)
 
 ## Referências
