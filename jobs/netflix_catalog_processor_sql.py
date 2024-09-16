@@ -3,7 +3,6 @@ from pyspark.sql.functions import col, lower, split, when, count, sum
 import json, os, sys, logging
 from pyspark.sql.functions import trim, when, col, lit, avg
 from google.cloud import storage
-from google.cloud import storage
 from google.oauth2 import service_account
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(threadName)s] %(levelname)-5s %(name)s - %(message)s')
@@ -23,33 +22,6 @@ def main():
 
 
     df = spark.read.csv(netflix_file_dir, header=True, inferSchema=True, nullValue="") #usar fillna substituiria null. <column: subs>
-    
-#     pyspark.sql.GroupedData.max
-# pyspark.sql.GroupedData.mean
-# pyspark.sql.GroupedData.min
-# pyspark.sql.GroupedData.pivot
-# pyspark.sql.GroupedData.sum
-# Math Functions
-# Datetime Functions
-# Collection Functions
-# Sort Functions
-# String Functions
-# pyspark.sql.DataFrame.union
-# pyspark.sql.DataFrame.subtract
-# pyspark.sql.DataFrame.summary
-# pyspark.sql.DataFrame.tail
-# pyspark.sql.DataFrame.take
-# pyspark.sql.DataFrame.show
-# pyspark.sql.DataFrame.sort
-# pyspark.sql.DataFrame.sample
-# pyspark.sql.DataFrame.sampleBy
-# pyspark.sql.DataFrame.schema
-# pyspark.sql.DataFrame.select
-# pyspark.sql.DataFrame.orderBy
-# pyspark.sql.DataFrame.isEmpty
-# pyspark.sql.DataFrame.groupBy
-
-
     num_records = df.count()
     
     filtered_directors = df.filter(df["director"].isNotNull())
@@ -109,8 +81,6 @@ def main():
 
     final_blob = bucket.blob('data/netflix2.json')
     final_blob.upload_from_string(json.dumps(result, indent=3), content_type='application/json')
-
-
 
     spark.stop()
     print(f"\nDONE!")
